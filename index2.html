@@ -34,102 +34,106 @@
   <div class="modal-dialog modal-dialog-fluid">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">名前入力</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">代表者様のお名前をカタカナフルネームで入力してください</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
       </div>
       <div class="modal-body">
-        <input type="text" class="form-control" placeholder="カタカナフルネーム" v-model="recData.name" readonly >
+        <table class="table table-borderless"><tr>
+          <td class="col-8"><input type="text" class="form-control" placeholder="カタカナフルネーム" v-model="recData.name" readonly ></td>
+          <td class="col-3"><button class="btn btn-secondary" style="width: 100%;">クリア</button></td>
+        </tr></table>
         <table class="table table-borderless">
           <tr>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('1')">ア</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('2')">カ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">サ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">タ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ナ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ハ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">マ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ヤ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ラ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ワ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ガ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ザ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ダ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">バ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">パ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('パ')">パ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('バ')">バ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ダ')">ダ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ザ')">ザ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ガ')">ガ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ワ')">ワ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ラ')">ラ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ヤ')">ヤ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('マ')">マ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ハ')">ハ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ナ')">ナ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('た')">タ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('サ')">サ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('カ')">カ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ア')">ア</button></td>
           </tr>
           <tr>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('1')">ア</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('2')">カ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">サ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">タ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ナ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ハ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">マ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ヤ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ラ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ワ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ガ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ザ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ダ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">バ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">パ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ピ')">ピ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ビ')">ビ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ヂ')">ヂ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ジ')">ジ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ギ')">ギ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ヲ')">ヲ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('リ')">リ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ユ')">ユ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ミ')">ミ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ヒ')">ヒ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ニ')">ニ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('チ')">チ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('シ')">シ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('キ')">キ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('イ')">イ</button></td>
           </tr>
           <tr>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('1')">ア</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('2')">カ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">サ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">タ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ナ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ハ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">マ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ヤ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ラ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ワ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ガ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ザ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ダ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">バ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">パ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('プ')">プ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ブ')">ブ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ヅ')">ヅ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ズ')">ズ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('グ')">グ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ン')">ン</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ル')">ル</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ヨ')">ヨ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ム')">ム</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('フ')">フ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ヌ')">ヌ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ツ')">ツ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ス')">ス</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ク')">ク</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ウ')">ウ</button></td>
           </tr>
           <tr>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('1')">ア</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('2')">カ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">サ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">タ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ナ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ハ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">マ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ヤ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ラ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ワ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ガ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ザ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ダ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">バ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">パ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('プ')">プ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ブ')">ブ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('デ')">デ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ゼ')">ゼ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ゲ')">ゲ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ョ')">ョ<span style="font-size: xx-small;">(小)</span></button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('レ')">レ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ャ')">ャ<span style="font-size: xx-small;">(小)</span></button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('メ')">メ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ヘ')">ヘ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ネ')">ネ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('テ')">テ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('セ')">セ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ケ')">ケ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('エ')">エ</button></td>
           </tr>
           <tr>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('1')">ア</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('2')">カ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">サ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">タ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ナ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ハ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">マ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ヤ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ラ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ワ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ガ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ザ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">ダ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">バ</button></td>
-            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('3')">パ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ポ')">ポ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ボ')">ボ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ド')">ド</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ゾ')">ゾ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ゴ')">ゴ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ッ')">ッ<span style="font-size: xx-small;">(小)</span></button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ロ')">ロ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ュ')">ュ<span style="font-size: xx-small;">(小)</span></button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('モ')">モ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ホ')">ホ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ノ')">ノ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ト')">ト</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('ソ')">ソ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('コ')">コ</button></td>
+            <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 70px;" @click="inputName('オ')">オ</button></td>
           </tr>
+
 
         </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-info" data-bs-dismiss="modal">閉じる</button>
+        <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">閉じる</button>
       </div><!-- /.modal-footer -->
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -240,7 +244,7 @@
                 </div>
 
                 <div class="row justify-content-end mt-5">
-                  <a class="col-4 btn btn-success btn-lg py-0 mx-2" href="#item-2">次へ進む</a>
+                  <a class="col-4 btn btn-light btn-lg py-0 mx-2" href="#item-2">次へ進む</a>
                 </div>
 
               </div>
@@ -278,7 +282,7 @@
                             <tr>
                               <td class="col-1"></td>
                               <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputAge('0')">0</button></td>
-                              <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="initAge()">CL</button></td>
+                              <td class="col-1"><button class="btn btn-outline-secondary btn-lg" style="width: 110px;" @click="initAge()">クリア</button></td>
                             </tr>
                           </table>
                         </td>
@@ -312,7 +316,7 @@
                             <tr>
                               <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputTel('-')">-</td>
                               <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputTel('0')">0</td>
-                              <td class="col-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="initTel()">CL</td>
+                              <td class="col-1"><button class="btn btn-outline-secondary btn-lg" style="width: 110px;" @click="initTel()">クリア</td>
                             </tr>
                           </table>
                         </td>
@@ -322,8 +326,8 @@
                 </div>
 
                 <div class="row justify-content-between mt-5">
-                  <a class="col-4 btn btn-success btn-lg py-0 mx-2" href="#item-1">前に戻る</a>
-                  <a class="col-4 btn btn-success btn-lg py-0 mx-2" href="#item-3">次へ進む</a>
+                  <a class="col-4 btn btn-light btn-lg" href="#item-1">前に戻る</a>
+                  <a class="col-4 btn btn-light btn-lg" href="#item-3">次へ進む</a>
                 </div>
 
 
