@@ -140,7 +140,7 @@
         </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-info col-4" data-bs-dismiss="modal">確定（閉じる）</button>
+        <button type="button" class="btn btn-primary text-white col-4" data-bs-dismiss="modal">確定（閉じる）</button>
       </div><!-- /.modal-footer -->
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -150,8 +150,8 @@
 
 
 
-      <div class="row vh-100">
-          <div class="col-4">
+      <div class="row vh-100 p-0 m-0">
+          <div class="col-4 p-0">
             <nav id="navbar" class="h-100 flex-column align-items-stretch pe-4 border-end">
               <nav class="nav nav-pills flex-column vh-100">
                 <a class="nav-link active h-25" href="#item-1">
@@ -207,7 +207,7 @@
               </nav>
             </nav>
           </div>
-          <div class="col-8">
+          <div class="col-8 p-0">
             <div class="overflow-auto vh-100" data-bs-spy="scroll" data-bs-target="#navbar" data-bs-smooth-scroll="true" tabindex="0">
               <div id="item-1" class="vh-100">
                 <h4 class="h4">【1】人数/ご利用時間</h4>
@@ -280,7 +280,7 @@
                 </div>
 
                 <div class="row justify-content-end mt-5">
-                  <a class="col-4 btn btn-light btn-lg mx-2" href="#item-2">次へ進む</a>
+                  <a class="col-4 btn btn-primary text-white btn-lg mx-4" href="#item-2">次へ進む</a>
                 </div>
 
               </div>
@@ -362,8 +362,8 @@
                 </div>
 
                 <div class="row justify-content-between my-3">
-                  <a class="col-4 btn btn-light btn-lg" href="#item-1">前に戻る</a>
-                  <a class="col-4 btn btn-light btn-lg" href="#item-3">次へ進む</a>
+                  <a class="col-4 btn btn-primary text-white btn-lg mx-4" href="#item-1">前に戻る</a>
+                  <a class="col-4 btn btn-primary text-white btn-lg mx-4" href="#item-3">次へ進む</a>
                 </div>
 
 
@@ -373,7 +373,7 @@
 
                 <div class="border-bottom mt-3">
                   <div class="my-2">20歳未満のお客様はいらっしゃいますか</div>
-                  <div class="mt-5 mb-3">
+                  <div class="mt-5 mb-3 btn-group">
                     <input type="radio" class="btn-check" name="optionsUnderage" id="underageTrue" autocomplete="off" v-model="recData.underage" value="yes">
                       <label class="btn btn-outline-secondary btn-lg mx-2" style="width: 20vw;" for="underageTrue">20様未満を含む</label>
                     <input type="radio" class="btn-check" name="optionsUnderage" id="underageFalse" autocomplete="off" v-model="recData.underage" value="no">
@@ -387,7 +387,7 @@
 
                 <div class="border-bottom mt-3">
                   <div class="my-2">お部屋のご希望はありますか</div>
-                  <div class="mt-5 mb-3">
+                  <div class="mt-5 mb-3 btn-group">
                     <input type="radio" class="btn-check" name="optionsNote" id="noteDam" autocomplete="off" v-model="recData.note" value="DAM">
                       <label class="btn btn-outline-secondary btn-lg mx-2 h-100" style="width: 20vw;" for="noteDam">DAM</label>
                     <input type="radio" class="btn-check" name="optionsNote" id="noteJoy" autocomplete="off" v-model="recData.note" value="JOY">
@@ -402,17 +402,27 @@
                 </div>
 
                 <div class="row justify-content-between my-3">
-                  <a class="col-4 btn btn-light btn-lg" href="#item-2">前に戻る</a>
-                  <a class="col-4 btn btn-light btn-lg" href="#item-4">次へ進む</a>
+                  <a class="col-4 btn btn-primary text-white btn-lg mx-4" href="#item-2">前に戻る</a>
+                  <a class="col-4 btn btn-primary text-white btn-lg mx-4" href="#item-4">次へ進む</a>
                 </div>
 
               </div>
               <div id="item-4" class="vh-100">
                   <h4 class="h4">【4】情報を確定</h4>
-                  <p>アイテム 4の文章です。...</p>
+                  <div class="border-bottom mt-3">
+                    <div class="my-2">以下の内容で受け付けます</div>
+                    <ul class="list-group m-3">
+                      <li class="list-group-item">ご利用人数：{{recData.nin}}名様</li>
+                      <li class="list-group-item">ご利用時間：{{recData.hour}}時間</li>
+                      <li class="list-group-item">代表者：{{recData.name}}様({{recData.age}})</li>
+                      <li class="list-group-item">電話番号：{{recData.tel}}</li>
+                      <li class="list-group-item">電話番号：{{recData.tel}}</li>
+                      <li class="list-group-item">電話番号：{{recData.tel}}</li>
+                    <ul>
 
+  
                   <div class="row justify-content-between my-3">
-                    <a class="col-4 btn btn-light btn-lg" href="#item-3">前に戻る</a>
+                    <a class="col-4 btn btn-primary text-white btn-lg mx-4" href="#item-3">前に戻る</a>
                   </div>
                 </div>
 
