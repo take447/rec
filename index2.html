@@ -420,19 +420,44 @@
               </div>
               <div id="item-4" class="vh-100">
                   <h4 class="h4">【4】情報を確定</h4>
-                  <div class="border-bottom mt-3">
+                  <div class="border-bottom mt-3 mb-5">
                     <div class="my-2">以下の内容で受け付けます</div>
                     <ul class="list-group m-3">
-                      <li class="list-group-item">ご利用人数：{{recData.nin}}名様</li>
-                      <li class="list-group-item">ご利用時間：{{recData.hour}}時間</li>
-                      <li class="list-group-item">代表者：{{recData.name}}様({{recData.age}})</li>
-                      <li class="list-group-item">電話番号：{{recData.tel}}</li>
-                      <li class="list-group-item">電話番号：{{recData.tel}}</li>
-                      <li class="list-group-item">電話番号：{{recData.tel}}</li>
-                    <ul>
-
-  
-                  <div class="row justify-content-between my-3">
+                      <li class="list-group-item">ご利用人数：
+                        <span v-if="recData.nin==''" class="text-danger">未入力</span>
+                        <span v-if="recData.nin!=''">{{recData.nin}}名様<span v-show="recData.nin==20">以上</span></span>
+                      </li>
+                      <li class="list-group-item">ご利用時間：
+                        <span v-if="recData.hour==''" class="text-danger">未入力</span>
+                        <span v-if="recData.hour!=''">{{recData.hour}}時間<span v-show="recData.hour==3.0">以上</span></span>
+                      </li>                      
+                      <li class="list-group-item">代表者：
+                        <span v-if="recData.name==''" class="text-danger">お名前未入力</span>
+                        <span v-if="recData.name!=''">{{recData.name}}様</span>
+                        (<span v-if="recData.age==''" class="text-danger">年齢未入力</span><span v-if="recData.age!=''">{{recData.age}}歳</span>)
+                      </li>
+                      <li class="list-group-item">
+                        <span v-if="recData.underage==''">確認事項１：<span class="text-danger">未入力</span></span>
+                        <span v-if="recData.underage=='yes'">20様未満を含む</span>
+                        <span v-if="recData.underage=='no'">20歳未満を含まない</span>
+                      </li>
+                      <li class="list-group-item">
+                        <span v-if="recData.note==''">確認事項２：<span class="text-danger">未入力</span></span>
+                        <span v-if="recData.note=='DAM'">DAMの部屋を希望</span>
+                        <span v-if="recData.note=='JOY'">JOYSOUNDの部屋を希望</span>
+                        <span v-if="recData.note=='Nothing'">機種の希望なし</span>
+                      </li>
+                    </ul>
+                    
+                    <div class="alert alert-danger  d-flex align-items-center m-3" role="alert" v-if="inputCheck">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="2.5vw" height="2.5vw" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                      </svg>
+                      <div>未入力の項目があります</div>
+                    </div>
+                    <div class="d-grid gap-2 my-5 mx-3"><button class="btn btn-success btn-lg" :disabled="inputCheck">上記内容で確定します</button></div>
+                  </div>
+                  <div class="row justify-content-between">
                     <a class="col-4 btn btn-primary text-white btn-lg mx-4" href="#item-3">前に戻る</a>
                   </div>
                 </div>
@@ -501,8 +526,24 @@
           this.recData.name = this.recData.name.slice(0, -1);
           return;
         }
-
-
+      },
+      computed:{
+        inputCheck: function(){
+          const obj = this.recData
+          for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+              if (obj[key] === null ||
+                  obj[key] === undefined ||
+                  obj[key] === '' ||
+                  (Array.isArray(obj[key]) && obj[key].length === 0)) {
+                return true;
+              } else if (typeof obj[key] === 'object' && hasEmptyValue(obj[key])) {
+                return true;
+              }
+            }
+          }
+          return false;
+        }
       }
     }
     Vue.createApp(app).mount('#app')
