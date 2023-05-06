@@ -3,52 +3,497 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
-    
+    <style>
+      h4 {
+        padding-top: 15px;
+        margin-top:-15px;
+      }
+      .modal-dialog-fluid {
+        max-width: inherit;
+        width: 98%;
+        margin-left: 10px;
+      }
+
+      div {
+        scrollbar-width: none; /*Firefox対応のスクロールバー非表示コード*/  
+        -ms-overflow-style: none;/*Internet Explore対応のスクロールバー非表示コード*/   
+      }
+
+      div::-webkit-scrollbar {  
+        display: none; /*Google Chrome、Safari、Microsoft Edge対応のスクロールバー非表示コード*/
+      }
+
+    </style>
+
+    <title>受付</title>
   </head>
   <body>
 
-<div id="app">
+  <div id="app">
 
-    <div class="container-fluid">
-        <div class="row vh-100">
-            <div class="nav col-4 h-100 fixed-top">
-                <div id="list-example" class="list-group h-100 w-100">
-                    <a class="list-group-item list-group-item-action h-25" href="#list-item-1">
-                        手順１
-                    </a>
-                    <a class="list-group-item list-group-item-action h-25" href="#list-item-2">
-                        手順２
-                    </a>
-                    <a class="list-group-item list-group-item-action h-25" href="#list-item-3">
-                        手順３
-                    </a>
-                    <a class="list-group-item list-group-item-action h-25" href="#list-item-4">
-                        手順４
-                    </a>
+
+
+
+<!-- モーダルの設定 -->
+<div class="modal fade" id="inputNameModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-fluid">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">代表者様のお名前をカタカナフルネームで入力してください</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-borderless"><tr>
+          <td class="col-8"><input type="text" class="form-control" placeholder="カタカナフルネーム" v-model="recData.name" readonly ></td>
+          <td class="col-3"><button class="btn btn-secondary" style="width: 100%;" @click="bsName">一文字削除</button></td>
+        </tr></table>
+        <table class="table table-borderless" style="table-layout:fixed;">
+          <tr>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('パ')">パ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('バ')">バ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ダ')">ダ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ザ')">ザ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ガ')">ガ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ワ')">ワ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ラ')">ラ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ヤ')">ヤ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('マ')">マ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ハ')">ハ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ナ')">ナ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('タ')">タ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('サ')">サ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('カ')">カ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ア')">ア</button></td>
+          </tr>
+          <tr>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ピ')">ピ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ビ')">ビ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ヂ')">ヂ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ジ')">ジ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ギ')">ギ</button></td>
+            <td class="col-1 px-0"></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('リ')">リ</button></td>
+            <td class="col-1 px-0"></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ミ')">ミ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ヒ')">ヒ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ニ')">ニ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('チ')">チ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('シ')">シ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('キ')">キ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('イ')">イ</button></td>
+          </tr>
+          <tr>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('プ')">プ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ブ')">ブ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ヅ')">ヅ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ズ')">ズ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('グ')">グ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ヲ')">ヲ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ル')">ル</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ユ')">ユ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ム')">ム</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('フ')">フ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ヌ')">ヌ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ツ')">ツ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ス')">ス</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ク')">ク</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ウ')">ウ</button></td>
+          </tr>
+          <tr>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('プ')">プ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ブ')">ブ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('デ')">デ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ゼ')">ゼ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ゲ')">ゲ</button></td>
+            <td class="col-1 px-0"></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('レ')">レ</button></td>
+            <td class="col-1 px-0"></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('メ')">メ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ヘ')">ヘ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ネ')">ネ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('テ')">テ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('セ')">セ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ケ')">ケ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('エ')">エ</button></td>
+          </tr>
+          <tr>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ポ')">ポ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ボ')">ボ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ド')">ド</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ゾ')">ゾ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ゴ')">ゴ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ン')">ン</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ロ')">ロ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ヨ')">ヨ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('モ')">モ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ホ')">ホ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ノ')">ノ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ト')">ト</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('ソ')">ソ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('コ')">コ</button></td>
+            <td class="col-1 px-0"><button class="btn btn-secondary btn-lg" style="width: 5vw;" @click="inputName('オ')">オ</button></td>
+          </tr>
+          <tr>
+            <td class="col px-0" colspan="2"><button class="btn btn-secondary btn-lg" style="width: 10vw;" @click="inputName('ャ')">ャ<span style="font-size: 1vw;">(小)</span></button></td>
+            <td class="col px-0" colspan="2"><button class="btn btn-secondary btn-lg" style="width: 10vw;" @click="inputName('ュ')">ュ<span style="font-size: 1vw;">(小)</span></button></td>
+            <td class="col px-0" colspan="2"><button class="btn btn-secondary btn-lg" style="width: 10vw;" @click="inputName('ョ')">ョ<span style="font-size: 1vw;">(小)</span></button></td>
+            <td class="col px-0" colspan="2"><button class="btn btn-secondary btn-lg" style="width: 10vw;" @click="inputName('ッ')">ッ<span style="font-size: 1vw;">(小)</span></button></td>
+            <td class="col px-0" colspan="2"><button class="btn btn-secondary btn-lg" style="width: 10vw;" @click="inputName('　')"><span style="font-size: 1vw;">(スペース)</span></button></td>
+          </tr>
+
+
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary text-white col-4" data-bs-dismiss="modal">確定（閉じる）</button>
+      </div><!-- /.modal-footer -->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+<!-- モーダルの設定 -->
+<div class="modal fade" id="submitRecData" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">受け付けました</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+      </div>
+      <div class="modal-body">
+        <div>デモ画面で生成されたデータは下記の通り</div>
+        <div class="text-wrap"><pre>{{JSON.stringify(recData,null,"\t")}}</pre></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary text-white col-4" data-bs-dismiss="modal" @click="initAll">完了</button>
+      </div><!-- /.modal-footer -->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+      <div class="row vh-100 p-0 m-0">
+          <div class="col-4 p-0">
+            <nav id="navbar" class="h-100 flex-column align-items-stretch pe-4 border-end">
+              <nav class="nav nav-pills flex-column vh-100">
+                <a class="nav-link active h-25" href="#item-1">
+                  <div class="h4">【1】人数/ご利用時間</div>
+                  <ul class="list-group">
+                    <li class="list-group-item">ご利用人数：
+                      <span v-if="recData.nin!=''">{{recData.nin}}名様<span v-show="recData.nin==20">以上</span></span>
+                      <span class="text-danger" v-else>(未入力)</span></li>
+                    <li class="list-group-item">ご利用時間：
+                      <span v-if="recData.hour!=''">{{recData.hour}}時間<span v-show="recData.hour==3.0">以上</span></span>
+                      <span class="text-danger" v-else>(未入力)</span>
+                    </li>
+                  </ul>
+                </a>
+                <a class="nav-link h-25" href="#item-2">
+                  <div class="h4">【2】お客様情報（代表者）</div>
+                  <ul class="list-group">
+                    <li class="list-group-item">
+                      <span v-if="recData.name!=''">{{recData.name}}</span>
+                      <span class="text-danger" v-else>(未入力)</span>
+                      <span>様</span>
+                    </li>
+                    <li class="list-group-item">
+                      <span v-if="recData.age!=''">{{recData.age}}</span>
+                      <span class="text-danger" v-else>(未入力)</span>
+                      <span>歳</span>
+                    </li>
+                    <li class="list-group-item">電話番号：
+                      <span v-if="recData.tel!=''">{{recData.tel}}</span>
+                      <span class="text-danger" v-else>(未入力)</span>
+                    </li>
+                  </ul>
+                </a>
+                <a class="nav-link h-25" href="#item-3">
+                  <div class="h4">【3】確認事項</div>
+                  <ul class="list-group">
+                    <li class="list-group-item">
+                      <span class="text-danger" v-if="recData.underage==''">(未入力)</span>
+                      <span v-if="recData.underage=='yes'">20歳未満を含む</span>
+                      <span v-if="recData.underage=='no'">20歳未満を含まない</span>
+                    </li>
+                    <li class="list-group-item">
+                      <span class="text-danger" v-if="recData.note==''">(未入力)</span>
+                      <span v-if="recData.note=='DAM'">DAMを希望</span>
+                      <span v-if="recData.note=='JOY'">JOYを希望</span>
+                      <span v-if="recData.note=='Nothing'">希望無し</span>
+                    </li>     
+                  </ul>
+                </a>
+                <a class="nav-link h-25" href="#item-4">
+                  <div class="h4">【4】情報を確定</div>
+                </a>
+              </nav>
+            </nav>
+          </div>
+          <div class="col-8 p-0">
+            <div class="overflow-auto vh-100" data-bs-spy="scroll" data-bs-target="#navbar" data-bs-smooth-scroll="true" tabindex="0">
+              <div id="item-1" class="vh-100">
+                <h4 class="h4">【1】人数/ご利用時間</h4>
+                <div class="border-top border-bottom">
+                  <div class="my-2">人数を選択してください</div>
+                  <div class="my-3">
+                    <input type="radio" class="btn-check" name="optionsNin" id="nin1" autocomplete="off" v-model="recData.nin" value="1">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 8.5vw;" for="nin1">1</label>
+                    <input type="radio" class="btn-check" name="optionsNin" id="nin2" autocomplete="off" v-model="recData.nin" value="2">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 8.5vw;" for="nin2">2</label>
+                    <input type="radio" class="btn-check" name="optionsNin" id="nin3" autocomplete="off" v-model="recData.nin" value="3">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 8.5vw;" for="nin3">3</label>
+                    <input type="radio" class="btn-check" name="optionsNin" id="nin4" autocomplete="off" v-model="recData.nin" value="4">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 8.5vw;" for="nin4">4</label>
+                    <input type="radio" class="btn-check" name="optionsNin" id="nin5" autocomplete="off" v-model="recData.nin" value="5">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 8.5vw;" for="nin5">5</label>
+                    <input type="radio" class="btn-check" name="optionsNin" id="nin6" autocomplete="off" v-model="recData.nin" value="6">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 8.5vw;" for="nin6">6</label>
+                    <input type="radio" class="btn-check" name="optionsNin" id="nin7" autocomplete="off" v-model="recData.nin" value="7">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 8.5vw;" for="nin7">7</label>
+                  </div>
+                  <div class="my-3">
+                    <input type="radio" class="btn-check" name="optionsNin" id="nin8" autocomplete="off" v-model="recData.nin" value="8">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 8.5vw;" for="nin8">8</label>
+                    <input type="radio" class="btn-check" name="optionsNin" id="nin9" autocomplete="off" v-model="recData.nin" value="9">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 8.5vw;" for="nin9">8</label>
+                    <input type="radio" class="btn-check" name="optionsNin" id="nin10" autocomplete="off" v-model="recData.nin" value="10">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 8.5vw;" for="nin10">10</label>
+                    <input type="radio" class="btn-check" name="optionsNin" id="nin11" autocomplete="off" v-model="recData.nin" value="11">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 8.5vw;" for="nin11">11</label>
+                    <input type="radio" class="btn-check" name="optionsNin" id="nin12" autocomplete="off" v-model="recData.nin" value="12">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 8.5vw;" for="nin12">12</label>
+                    <input type="radio" class="btn-check" name="optionsNin" id="nin13" autocomplete="off" v-model="recData.nin" value="13">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 8.5vw;">13</label>
+                    <input type="radio" class="btn-check" name="optionsNin" id="nin14" autocomplete="off" v-model="recData.nin" value="14">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 8.5vw;" for="nin14">14</label>
+                  </div>
+                  <div class="my-3">
+                    <input type="radio" class="btn-check" name="optionsNin" id="nin15" autocomplete="off" v-model="recData.nin" value="15">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 8.5vw;" for="nin15">15</label>
+                    <input type="radio" class="btn-check" name="optionsNin" id="nin16" autocomplete="off" v-model="recData.nin" value="16">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 8.5vw;" for="nin16">16</label>
+                    <input type="radio" class="btn-check" name="optionsNin" id="nin17" autocomplete="off" v-model="recData.nin" value="17">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 8.5vw;" for="nin17">17</label>
+                    <input type="radio" class="btn-check" name="optionsNin" id="nin18" autocomplete="off" v-model="recData.nin" value="18">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 8.5vw;" for="nin18">18</label>
+                    <input type="radio" class="btn-check" name="optionsNin" id="nin19" autocomplete="off" v-model="recData.nin" value="19">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 8.5vw;" for="nin19">19</label>
+                    <input type="radio" class="btn-check" name="optionsNin" id="nin20" autocomplete="off" v-model="recData.nin" value="20">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 8.5vw;" for="nin20">20<span style="font-size: 1vw;">以上</span></label>
+                  </div>
                 </div>
-            </div>
-            <div class="col-8">
-                <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">
-                    <h4 id="list-item-1">１番目</h4>
-                    <div class="vh-100">最初にやること</div>
-                    <h4 id="list-item-2">２番目</h4>
-                    <div class="vh-100">その次はこれをやる</div>
-                    <h4 id="list-item-3">３番目</h4>
-                    <div class="vh-100">さらにこうして</div>
-                    <h4 id="list-item-4">４番目</h4>
-                    <div class="vh-100">最後はこう</div>
+
+                <div class="border-bottom mt-3">
+                  <div class="my-2">ご利用時間を選択してください</div>
+                  <div class="my-3">
+                    <input type="radio" class="btn-check" name="optionsHour" id="hour05" autocomplete="off" v-model="recData.hour" value="0.5">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 10vw;" for="hour05">0.5<span style="font-size: 1vw;">時間</span></label>
+                    <input type="radio" class="btn-check" name="optionsHour" id="hour10" autocomplete="off" v-model="recData.hour" value="1.0">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 10vw;" for="hour10">1<span style="font-size: 1vw;">時間</span></label>
+                    <input type="radio" class="btn-check" name="optionsHour" id="hour15" autocomplete="off" v-model="recData.hour" value="1.5">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 10vw;" for="hour15">1.5<span style="font-size: 1vw;">時間</span></label>
+                    <input type="radio" class="btn-check" name="optionsHour" id="hour20" autocomplete="off" v-model="recData.hour" value="2.0">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 10vw;" for="hour20">2<span style="font-size: 1vw;">時間</span></label>
+                    <input type="radio" class="btn-check" name="optionsHour" id="hour25" autocomplete="off" v-model="recData.hour" value="2.5">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 10vw;" for="hour25">2.5<span style="font-size: 1vw;">時間</span></label>
+                    <input type="radio" class="btn-check" name="optionsHour" id="hour30" autocomplete="off" v-model="recData.hour" value="3.0">
+                      <label class="btn btn-outline-secondary btn-lg mx-1" style="width: 10vw;" for="hour30">3<span style="font-size: 1vw;">時間以上</span></label>
+                  </div>
                 </div>
+
+                <div class="row justify-content-end mt-5">
+                  <a class="col-4 btn btn-primary text-white btn-lg mx-4" href="#item-2">次へ進む</a>
+                </div>
+
+              </div>
+              <div id="item-2" class="vh-100">
+                <h4 class="h4 border-bottom py-2">【2】お名前/年齢/電話番号</h4>
+                <div class="border-bottom mt-1">
+                  <div class="input-group m-4 w-75">
+                    <input type="text" class="form-control" placeholder="カタカナフルネーム" v-model="recData.name" readonly >
+                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#inputNameModal">入力/変更</button>
+                  </div>
+                </div>
+
+                <div class="border-bottom mt-3">
+                  <div class="input-group">
+                    <table class="table table-borderless m-0">
+                      <tr>
+                        <td class="w-50"><input type="text" class="form-control" placeholder="年齢" v-model="recData.age" readonly></td>
+                        <td>
+                          <table  class="table table-borderless m-0">
+                            <tr>
+                              <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputAge('1')">1</button></td>
+                              <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputAge('2')">2</button></td>
+                              <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputAge('3')">3</button></td>
+                            </tr>
+                            <tr>
+                              <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputAge('4')">4</button></td>
+                              <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputAge('5')">5</button></td>
+                              <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputAge('6')">6</button></td>
+                            </tr>
+                            <tr>
+                              <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputAge('7')">7</button></td>
+                              <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputAge('8')">8</button></td>
+                              <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputAge('9')">9</button></td>
+                            </tr>
+                            <tr>
+                              <td class="col-1 py-1"></td>
+                              <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputAge('0')">0</button></td>
+                              <td class="col-1 py-1"><button class="btn btn-outline-secondary btn-lg" style="width: 110px;" @click="initAge()">クリア</button></td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="border-bottom mt-3">
+                  <div class="input-group">
+                    <table class="table table-borderless m-0">
+                      <tr>
+                        <td class="w-50"><input type="text" class="form-control" placeholder="電話番号000-0000-0000" v-model="recData.tel" readonly ></td>
+                        <td class="p-0">
+                          <table  class="table table-borderless m-1">
+                            <tr>
+                              <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputTel('1')">1</button></td>
+                              <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputTel('2')">2</button></td>
+                              <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputTel('3')">3</button></td>
+                            </tr>
+                            <tr>
+                              <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputTel('4')">4</button></td>
+                              <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputTel('5')">5</button></td>
+                              <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputTel('6')">6</button></td>
+                            </tr>
+                            <tr>
+                              <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputTel('7')">7</button></td>
+                              <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputTel('8')">8</button></td>
+                              <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputTel('9')">9</button></td>
+                            </tr>
+                            <tr>
+                              <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputTel('-')">-</button></td>
+                              <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputTel('0')">0</button></td>
+                              <td class="col-1 py-1"><button class="btn btn-outline-secondary btn-lg" style="width: 110px;" @click="initTel()">クリア</button></td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="row justify-content-between my-3">
+                  <a class="col-4 btn btn-primary text-white btn-lg mx-4" href="#item-1">前に戻る</a>
+                  <a class="col-4 btn btn-primary text-white btn-lg mx-4" href="#item-3">次へ進む</a>
+                </div>
+
+
+              </div>
+              <div id="item-3" class="vh-100">
+                <h4 class="h4">【3】確認事項</h4>
+
+                <div class="border-bottom mt-3">
+                  <div class="my-2">20歳未満のお客様はいらっしゃいますか</div>
+                  <div class="mt-5 mb-3 btn-group">
+                    <input type="radio" class="btn-check" name="optionsUnderage" id="underageTrue" autocomplete="off" v-model="recData.underage" value="yes">
+                      <label class="btn btn-outline-secondary btn-lg mx-2" style="width: 30vw;" for="underageTrue">20様未満を含む</label>
+                    <input type="radio" class="btn-check" name="optionsUnderage" id="underageFalse" autocomplete="off" v-model="recData.underage" value="no">
+                      <label class="btn btn-outline-secondary btn-lg mx-2" style="width: 30vw;" for="underageFalse">20歳未満を含まない</label>
+                  </div>
+                  <ul class="mb-5">
+                    <li>20歳未満のお客様がいるお部屋に酒類の提供はできません。</li>
+                    <li>青少年健全育成条例に従って在店制限時間が決まっております。</li>
+                  </ul>
+                </div>
+
+                <div class="border-bottom mt-3">
+                  <div class="my-2">お部屋のご希望はありますか</div>
+                  <div class="mt-5 mb-3 btn-group">
+                    <input type="radio" class="btn-check" name="optionsNote" id="noteDam" autocomplete="off" v-model="recData.note" value="DAM">
+                      <label class="btn btn-outline-secondary btn-lg mx-2 h-100" style="width: 20vw;" for="noteDam">DAM</label>
+                    <input type="radio" class="btn-check" name="optionsNote" id="noteJoy" autocomplete="off" v-model="recData.note" value="JOY">
+                      <label class="btn btn-outline-secondary btn-lg mx-2" style="width: 20vw;" for="noteJoy">JOYSOUND</label>
+                    <input type="radio" class="btn-check" name="optionsNote" id="noteNothing" autocomplete="off" v-model="recData.note" value="Nothing">
+                      <label class="btn btn-outline-secondary btn-lg mx-2" style="width: 20vw;" for="noteNothing">希望は無い</label>
+                  </div>
+                  <ul class="mb-5">
+                    <li>希望する機種により待ち時間が変わる場合があります</li>
+                    <li>その他ご希望がある場合は直接スタッフに申しつけください</li>
+                  </ul>
+                </div>
+
+                <div class="row justify-content-between my-3">
+                  <a class="col-4 btn btn-primary text-white btn-lg mx-4" href="#item-2">前に戻る</a>
+                  <a class="col-4 btn btn-primary text-white btn-lg mx-4" href="#item-4">次へ進む</a>
+                </div>
+
+              </div>
+              <div id="item-4" class="vh-100">
+                  <h4 class="h4">【4】情報を確定</h4>
+                  <div class="border-bottom mt-3 mb-5">
+                    <div class="my-2">以下の内容で受け付けます</div>
+                    <ul class="list-group m-3">
+                      <li class="list-group-item">ご利用人数：
+                        <span v-if="recData.nin==''" class="text-danger">未入力</span>
+                        <span v-if="recData.nin!=''">{{recData.nin}}名様<span v-show="recData.nin==20">以上</span></span>
+                      </li>
+                      <li class="list-group-item">ご利用時間：
+                        <span v-if="recData.hour==''" class="text-danger">未入力</span>
+                        <span v-if="recData.hour!=''">{{recData.hour}}時間<span v-show="recData.hour==3.0">以上</span></span>
+                      </li>                      
+                      <li class="list-group-item">代表者：
+                        <span v-if="recData.name==''" class="text-danger">お名前未入力</span>
+                        <span v-if="recData.name!=''">{{recData.name}}様</span>
+                        (<span v-if="recData.age==''" class="text-danger">年齢未入力</span><span v-if="recData.age!=''">{{recData.age}}歳</span>)
+                      </li>
+                      <li class="list-group-item">
+                        <span v-if="recData.underage==''">確認事項１：<span class="text-danger">未入力</span></span>
+                        <span v-if="recData.underage=='yes'">20様未満を含む</span>
+                        <span v-if="recData.underage=='no'">20歳未満を含まない</span>
+                      </li>
+                      <li class="list-group-item">
+                        <span v-if="recData.note==''">確認事項２：<span class="text-danger">未入力</span></span>
+                        <span v-if="recData.note=='DAM'">DAMの部屋を希望</span>
+                        <span v-if="recData.note=='JOY'">JOYSOUNDの部屋を希望</span>
+                        <span v-if="recData.note=='Nothing'">機種の希望なし</span>
+                      </li>
+                    </ul>
+                    
+                    <div class="alert alert-danger  d-flex align-items-center m-3" role="alert" v-if="inputCheck">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="2.5vw" height="2.5vw" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                      </svg>
+                      <div>未入力の項目があります</div>
+                    </div>
+                    <div class="d-grid gap-2 my-5 mx-3">
+                      <button class="btn btn-success btn-lg" type="button" data-bs-toggle="modal" data-bs-target="#submitRecData" :disabled="inputCheck">上記内容で確定します</button>
+                    </div>
+                  </div>
+                  <div class="row justify-content-between">
+                    <a class="col-4 btn btn-primary text-white btn-lg mx-4" href="#item-3">前に戻る</a>
+                  </div>
+                </div>
+
+
+
+
+              </div>
+
+
+
             </div>
         </div>
-    </div>
 
-</div>
+  </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -61,9 +506,80 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
 
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.2/dist/vue.global.js"></script>
+  <script>
+    const app = {
+      data() {
+        return {
+          recData:{
+            nin: '',
+            hour: '',
+            name: '',
+            age: '',
+            tel: '',
+            underage: '',
+            note: ''
+          }
+        } 
+      },
+      methods:{
+        inputAge: function(num){
+          this.recData.age +=num;
+          return;
+        },
+        inputTel: function(num){
+          this.recData.tel += num;
+          return;
+        },
+        inputName: function(ch){
+          this.recData.name +=ch;
+          return;
+        },
+        initAge: function(){
+          this.recData.age ='';
+          return;
+        },
+        initTel: function(){
+          this.recData.tel ='';
+          return;
+        },
+        bsName: function(){
+          this.recData.name = this.recData.name.slice(0, -1);
+          return;
+        },
+        initAll: function(){
+          const obj = this.recData
+          for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+              obj[key]='';
+            }
+          }
+          window.location.href="#item-1"         
+          return;
+        }
+      },
+      computed:{
+        inputCheck: function(){
+          const obj = this.recData
+          for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+              if (obj[key] === null ||
+                  obj[key] === undefined ||
+                  obj[key] === '' ||
+                  (Array.isArray(obj[key]) && obj[key].length === 0)) {
+                return true;
+              } else if (typeof obj[key] === 'object' && hasEmptyValue(obj[key])) {
+                return true;
+              }
+            }
+          }
+          return false;
+        }
+      }
+    }
+    Vue.createApp(app).mount('#app')
 
-    
-
+  </script>
 
 
   </body>
