@@ -10,8 +10,8 @@
 
     <style>
       h4 {
-        padding-top: 30px;
-        margin-top:-30px;
+        padding-top: 15px;
+        margin-top:-15px;
       }
       .modal-dialog-fluid {
         max-width: inherit;
@@ -303,8 +303,8 @@
                     <table class="table table-borderless m-0">
                       <tr>
                         <td class="w-50"><input type="text" class="form-control" placeholder="電話番号000-0000-0000" v-model="recData.tel" readonly ></td>
-                        <td>
-                          <table  class="table table-borderless">
+                        <td class="p-0">
+                          <table  class="table table-borderless m-1">
                             <tr>
                               <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputTel('1')">1</button></td>
                               <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputTel('2')">2</button></td>
@@ -332,6 +332,7 @@
                   </div>
                 </div>
 
+                <div class="row justify-content-between mt-3">
                 <div class="row justify-content-between mt-3">
                   <a class="col-4 btn btn-light btn-lg" href="#item-1">前に戻る</a>
                   <a class="col-4 btn btn-light btn-lg" href="#item-3">次へ進む</a>
