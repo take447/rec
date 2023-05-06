@@ -140,7 +140,7 @@
         </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">閉じる</button>
+        <button type="button" class="btn btn-info col-4" data-bs-dismiss="modal">確定（閉じる）</button>
       </div><!-- /.modal-footer -->
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -157,20 +157,49 @@
                 <a class="nav-link active h-25" href="#item-1">
                   <div class="h4">【1】人数/ご利用時間</div>
                   <ul class="list-group">
-                    <li class="list-group-item">ご利用人数：{{recData.nin}}名様</li>
-                    <li class="list-group-item">ご利用時間：{{recData.hour}}時間</li>
+                    <li class="list-group-item">ご利用人数：
+                      <span v-if="recData.nin!=''">{{recData.nin}}名様<span v-show="recData.nin==20">以上</span></span>
+                      <span class="text-danger" v-else>(未入力)</span></li>
+                    <li class="list-group-item">ご利用時間：
+                      <span v-if="recData.hour!=''">{{recData.hour}}時間<span v-show="recData.hour==3.0">以上</span></span>
+                      <span class="text-danger" v-else>(未入力)</span>
+                    </li>
                   </ul>
                 </a>
                 <a class="nav-link h-25" href="#item-2">
                   <div class="h4">【2】お客様情報（代表者）</div>
                   <ul class="list-group">
-                    <li class="list-group-item">{{recData.name}}様</li>
-                    <li class="list-group-item">{{recData.age}}歳</li>
-                    <li class="list-group-item">電話番号：{{recData.tel}}</li>
+                    <li class="list-group-item">
+                      <span v-if="recData.name!=''">{{recData.name}}</span>
+                      <span class="text-danger" v-else>(未入力)</span>
+                      <span>様</span>
+                    </li>
+                    <li class="list-group-item">
+                      <span v-if="recData.age!=''">{{recData.age}}</span>
+                      <span class="text-danger" v-else>(未入力)</span>
+                      <span>歳</span>
+                    </li>
+                    <li class="list-group-item">電話番号：
+                      <span v-if="recData.tel!=''">{{recData.tel}}</span>
+                      <span class="text-danger" v-else>(未入力)</span>
+                    </li>
                   </ul>
                 </a>
                 <a class="nav-link h-25" href="#item-3">
                   <div class="h4">【3】確認事項</div>
+                  <ul class="list-group">
+                    <li class="list-group-item">
+                      <span class="text-danger" v-if="recData.underage==''">(未入力)</span>
+                      <span v-if="recData.underage=='yes'">20歳未満を含む</span>
+                      <span v-if="recData.underage=='no'">20歳未満を含まない</span>
+                    </li>
+                    <li class="list-group-item">
+                      <span class="text-danger" v-if="recData.note==''">(未入力)</span>
+                      <span v-if="recData.note=='DAM'">DAMを希望</span>
+                      <span v-if="recData.note=='JOY'">JOYを希望</span>
+                      <span v-if="recData.note=='Nothing'">希望無し</span>
+                    </li>     
+                  </ul>
                 </a>
                 <a class="nav-link h-25" href="#item-4">
                   <div class="h4">【4】情報を確定</div>
@@ -251,7 +280,7 @@
                 </div>
 
                 <div class="row justify-content-end mt-5">
-                  <a class="col-4 btn btn-light btn-lg py-0 mx-2" href="#item-2">次へ進む</a>
+                  <a class="col-4 btn btn-light btn-lg mx-2" href="#item-2">次へ進む</a>
                 </div>
 
               </div>
@@ -321,9 +350,9 @@
                               <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputTel('9')">9</button></td>
                             </tr>
                             <tr>
-                              <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputTel('-')">-</td>
-                              <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputTel('0')">0</td>
-                              <td class="col-1 py-1"><button class="btn btn-outline-secondary btn-lg" style="width: 110px;" @click="initTel()">クリア</td>
+                              <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputTel('-')">-</button></td>
+                              <td class="col-1 py-1"><button class="btn btn-secondary btn-lg" style="width: 110px;" @click="inputTel('0')">0</button></td>
+                              <td class="col-1 py-1"><button class="btn btn-outline-secondary btn-lg" style="width: 110px;" @click="initTel()">クリア</button></td>
                             </tr>
                           </table>
                         </td>
@@ -332,8 +361,7 @@
                   </div>
                 </div>
 
-                <div class="row justify-content-between mt-3">
-                <div class="row justify-content-between mt-3">
+                <div class="row justify-content-between my-3">
                   <a class="col-4 btn btn-light btn-lg" href="#item-1">前に戻る</a>
                   <a class="col-4 btn btn-light btn-lg" href="#item-3">次へ進む</a>
                 </div>
@@ -342,14 +370,60 @@
               </div>
               <div id="item-3" class="vh-100">
                 <h4 class="h4">【3】確認事項</h4>
-                <p>アイテム 3の文章です。...</p>
+
+                <div class="border-bottom mt-3">
+                  <div class="my-2">20歳未満のお客様はいらっしゃいますか</div>
+                  <div class="mt-5 mb-3">
+                    <input type="radio" class="btn-check" name="optionsUnderage" id="underageTrue" autocomplete="off" v-model="recData.underage" value="yes">
+                      <label class="btn btn-outline-secondary btn-lg mx-2" style="width: 20vw;" for="underageTrue">20様未満を含む</label>
+                    <input type="radio" class="btn-check" name="optionsUnderage" id="underageFalse" autocomplete="off" v-model="recData.underage" value="no">
+                      <label class="btn btn-outline-secondary btn-lg mx-2" style="width: 20vw;" for="underageFalse">20歳未満を含まない</label>
+                  </div>
+                  <ul class="mb-5">
+                    <li>20歳未満のお客様がいるお部屋に酒類の提供はできません。</li>
+                    <li>青少年健全育成条例に従って在店制限時間が決まっております。</li>
+                  </ul>
+                </div>
+
+                <div class="border-bottom mt-3">
+                  <div class="my-2">お部屋のご希望はありますか</div>
+                  <div class="mt-5 mb-3">
+                    <input type="radio" class="btn-check" name="optionsNote" id="noteDam" autocomplete="off" v-model="recData.note" value="DAM">
+                      <label class="btn btn-outline-secondary btn-lg mx-2 h-100" style="width: 20vw;" for="noteDam">DAM</label>
+                    <input type="radio" class="btn-check" name="optionsNote" id="noteJoy" autocomplete="off" v-model="recData.note" value="JOY">
+                      <label class="btn btn-outline-secondary btn-lg mx-2" style="width: 20vw;" for="noteJoy">JOYSOUND</label>
+                    <input type="radio" class="btn-check" name="optionsNote" id="noteNothing" autocomplete="off" v-model="recData.note" value="Nothing">
+                      <label class="btn btn-outline-secondary btn-lg mx-2" style="width: 20vw;" for="noteNothing">希望は無い</label>
+                  </div>
+                  <ul class="mb-5">
+                    <li>希望する機種により待ち時間が変わる場合があります</li>
+                    <li>その他ご希望がある場合は直接スタッフに申しつけください</li>
+                  </ul>
+                </div>
+
+                <div class="row justify-content-between my-3">
+                  <a class="col-4 btn btn-light btn-lg" href="#item-2">前に戻る</a>
+                  <a class="col-4 btn btn-light btn-lg" href="#item-4">次へ進む</a>
+                </div>
+
               </div>
               <div id="item-4" class="vh-100">
                   <h4 class="h4">【4】情報を確定</h4>
                   <p>アイテム 4の文章です。...</p>
+
+                  <div class="row justify-content-between my-3">
+                    <a class="col-4 btn btn-light btn-lg" href="#item-3">前に戻る</a>
+                  </div>
                 </div>
+
+
+
+
               </div>
-          </div>
+
+
+
+            </div>
         </div>
 
   </div>
@@ -376,7 +450,8 @@
             name: '',
             age: '',
             tel: '',
-            other: []
+            underage: '',
+            note: ''
           }
         } 
       },
@@ -386,7 +461,7 @@
           return;
         },
         inputTel: function(num){
-          this.recData.tel +=num;
+          this.recData.tel += num;
           return;
         },
         inputName: function(ch){
